@@ -1,6 +1,24 @@
+
+public class Alert
+{
+    public string fromDay { get; set; }
+    public string toDay { get; set; }
+    public List<string> users { get; set; }
+    public Message message { get; set; }
+}
+
 public class Download
 {
     public string folderDir { get; set; }
+}
+
+public class Eoffice
+{
+    public string token { get; set; }
+    public string user { get; set; }
+    public string pass { get; set; }
+    public string url { get; set; }
+    public string apiUrl { get; set; }
 }
 
 public class ExportXLSX
@@ -16,6 +34,13 @@ public class GetAllDevice
 public class Login
 {
     public string id { get; set; }
+}
+
+public class Message
+{
+    public string header { get; set; }
+    public string content { get; set; }
+    public string footer { get; set; }
 }
 
 public class Password
@@ -34,6 +59,8 @@ public class Root
     public GetAllDevice getAllDevice { get; set; }
     public ExportXLSX exportXLSX { get; set; }
     public Download download { get; set; }
+    public Eoffice eoffice { get; set; }
+    public Alert alert { get; set; }
 }
 
 public class Status

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using System.Net.Http.Json;
+using System.Text;
+using System.Text.RegularExpressions;
 using GemBox.Spreadsheet;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
@@ -9,8 +12,8 @@ using OpenQA.Selenium.Support.UI;
 
 IWebDriver driver = new ChromeDriver();
 
-var config = JsonConvert.DeserializeObject<Root>(File.ReadAllText(@"./config.json"));
-var dataConfig = JsonConvert.DeserializeObject<DataConfig.Root>(File.ReadAllText(@"./dataConfig.json"));
+var config = JsonConvert.DeserializeObject<Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/config.json"));
+var dataConfig = JsonConvert.DeserializeObject<DataConfig.Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/dataConfig.json"));
 SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
 
 if (config == null || dataConfig == null)
@@ -19,7 +22,7 @@ if (config == null || dataConfig == null)
     Console.ReadLine();
     return;
 }
-
+#region Loading the ktat page then download a device list
 driver.Navigate().GoToUrl("https://ktat.cpc.vn/Hethong/Dangnhap.aspx");
 Task.Delay(2000).Wait();
 var usernameElement = driver.FindElement(By.Id(config.username.id));
@@ -45,14 +48,18 @@ var exportXLSX = driver.FindElement(By.Id(config.exportXLSX.id));
 exportXLSX.Click();
 Console.WriteLine("Cho tai tep ve");
 Task.Delay(7000).Wait();
+#endregion
+
 var downloadFolder = config.download.folderDir;
 if (Directory.Exists(downloadFolder))
 {
+    #region Check the downloaded file then read it
     DirectoryInfo dirInfo = new DirectoryInfo(downloadFolder);
-    var ext =  "*.xlsx";
+    var ext = "*.xlsx";
     List<FileInfo> files = new List<FileInfo>();
     files.AddRange(dirInfo.GetFiles(ext).OrderByDescending(x => x.CreationTime).ToArray());
-    if (files == null || files.Count == 0){
+    if (files == null || files.Count == 0)
+    {
         Console.WriteLine("Loi! Khong tim thay tep da tai ve hoac het thoi gian cho nhung tep van chua tai xong");
         Console.ReadLine();
         return;
@@ -73,17 +80,87 @@ if (Directory.Exists(downloadFolder))
         {
             Id = workSheet.Cells[row, dataConfig.idIndexCol].Value?.ToString(),
             DeviceName = (workSheet.Cells[row, dataConfig.deviceNameIndexCol]).Value?.ToString(),
-            UnitName = (workSheet.Cells[row, dataConfig.unitNameIndexCol])?.Value?.ToString(),
-            LastestUsedDate =(workSheet.Cells[row, dataConfig.lastestUsedDateIndexCol])?.Value?.ToString(), 
-            CustomerName = workSheet.Cells[row, dataConfig.customerNameIndexCol]?.Value?.ToString(), 
-            DeviceManufacturerName =(workSheet.Cells[row, dataConfig.deviceManufacturerNameIndexCol])?.Value?.ToString(), 
-            DeviceManufactureCountry =(workSheet.Cells[row, dataConfig.deviceManufactureCountryIndexCol])?.Value?.ToString(),
-            DeviceYearOf =(workSheet.Cells[row, dataConfig.deviceYearOfIndexCol])?.Value?.ToString(),
-            DeviceStatus =(workSheet.Cells[row, dataConfig.deviceStatusIndexCol])?.Value?.ToString(),
-            DeviceProductionCode =(workSheet.Cells[row, dataConfig.deviceProductionCodeIndexCol])?.Value?.ToString()
+            UnitName = (workSheet.Cells[row, dataConfig.unitNameIndexCol]).Value?.ToString(),
+            LastestUsedDate = (workSheet.Cells[row, dataConfig.lastestUsedDateIndexCol]).Value?.ToString(),
+            CustomerName = workSheet.Cells[row, dataConfig.customerNameIndexCol].Value?.ToString(),
+            DeviceManufacturerName = (workSheet.Cells[row, dataConfig.deviceManufacturerNameIndexCol]).Value?.ToString(),
+            DeviceManufactureCountry = (workSheet.Cells[row, dataConfig.deviceManufactureCountryIndexCol]).Value?.ToString(),
+            DeviceYearOf = (workSheet.Cells[row, dataConfig.deviceYearOfIndexCol]).Value?.ToString(),
+            DeviceStatus = (workSheet.Cells[row, dataConfig.deviceStatusIndexCol]).Value?.ToString(),
+            DeviceProductionCode = (workSheet.Cells[row, dataConfig.deviceProductionCodeIndexCol]).Value?.ToString(),
+            RemainingDay = null
         });
     }
+    #endregion
+    foreach (var item in deviceList)
+    {
+        if (item.DeviceStatus != null && item.DeviceStatus != "")
+        {
+            try
+            {
+                item.RemainingDay = Regex.Match(item.DeviceStatus, @"\d+").Value.ToString();
+            }
+            catch
+            {
+                item.RemainingDay = null;
+            }
+        }
+    }
     Console.WriteLine("Tong so thiet bi duoc thu thap la: " + deviceList.Count.ToString());
+    Console.WriteLine("Bat dau loc danh sach cac thiet bi thoa man dien kien");
+    var deviceListNeedInform = deviceList.Where(item => item.RemainingDay != null).Where(item => int.Parse(item.RemainingDay) >= int.Parse(config.alert.fromDay) && int.Parse(item.RemainingDay) <= int.Parse(config.alert.toDay)).ToList();
+    Console.WriteLine("Tong so thiet bi thoa man dieu kien tu ngay {0} toi ngay {1}: {2}", config.alert.fromDay, config.alert.toDay, deviceListNeedInform.Count);
+    Console.WriteLine("Danh sach gom co: ");
+    foreach (var item in deviceListNeedInform)
+    {
+        Console.WriteLine("{0}\t{1}\t{2}", item.DeviceName, item.LastestUsedDate, item.DeviceStatus);
+    }
+    Console.WriteLine("Gui thong bao toi Eoffice");
+    #region Send device list to Eoofice
+    try
+    {
+        using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri(config.eoffice.apiUrl);
+            client.DefaultRequestHeaders.Add("api-version", "2");
+            client.DefaultRequestHeaders.Add("Authorization", config.eoffice.token);
+
+            var header = config.alert.message.header.Replace("{TNHH}", config.alert.fromDay).Replace("{DNHH}", config.alert.toDay).Replace("{TSTBHH}", deviceListNeedInform.Count.ToString());
+            var footer = config.alert.message.footer;
+            var content = "";
+            if (deviceListNeedInform.Count > 0)
+            {
+                foreach (var item in deviceListNeedInform)
+                {
+                    content += config.alert.message.content.Replace("{TTB}", item.DeviceName).Replace("{DV}", item.UnitName).Replace("{MHSX}", item.DeviceProductionCode).Replace("{HSX}", item.DeviceManufacturerName).Replace("{TTTB}", item.DeviceStatus);
+                }
+            }
+
+            var userNameToSend = config.alert.users;
+            var dataContent = header + content + footer;
+
+            var payload = JsonConvert.SerializeObject(new
+            {
+                usernames = userNameToSend,
+                noi_dung = dataContent
+            });
+
+            Console.WriteLine("Gui thong tin toi Eoffice nhu sau: " + payload);
+
+            HttpResponseMessage response = await client.PostAsync(config.eoffice.apiUrl, new StringContent(payload, Encoding.UTF8, "application/json"));
+
+            if (response.IsSuccessStatusCode)
+            {
+                Uri ncrUrl = response.Headers.Location;
+                Console.WriteLine("Da gui thong tin toi Eoffice thanh cong");
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Loi!: " + ex.Message);
+    }
+    #endregion
 }
 else
 {
@@ -92,4 +169,4 @@ else
 }
 Console.WriteLine("Nhan Enter de thoat!");
 Console.ReadLine();
-//driver.Quit();
+driver.Quit();

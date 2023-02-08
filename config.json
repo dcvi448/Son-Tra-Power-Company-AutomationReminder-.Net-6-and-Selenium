@@ -1,22 +1,22 @@
 {
-    "username":{
+    "username": {
         "id": "Txtusername",
-        "user": "giangpt"
+        "user": "XXXXXX"
     },
-    "password":{
+    "password": {
         "id": "Txtpass",
-        "pass": "@#Abcd1234"
+        "pass": "XXXXXX"
     },
-    "login":{
+    "login": {
         "id": "Tcap"
     },
-    "unit":{
+    "unit": {
         "includeAll": "yes",
         "id": "ctl00_ContentPlaceHolder1_cbdvtt"
     },
-    "status":{
-        "id":"ctl00_ContentPlaceHolder1_drCTT",
-        "value":{
+    "status": {
+        "id": "ctl00_ContentPlaceHolder1_drCTT",
+        "value": {
             "amostExpire": "4",
             "expire": "2",
             "damage": "-1",
@@ -24,13 +24,30 @@
         },
         "choose": "4"
     },
-    "getAllDevice":{
+    "getAllDevice": {
         "id": "ctl00_ContentPlaceHolder1_btnLayds"
     },
-    "exportXLSX":{
+    "exportXLSX": {
         "id": "grdDsPhieuCT_DXCTMenu0_DXI1_T"
     },
-    "download":{
+    "download": {
         "folderDir": "/Users/duc/Downloads"
+    },
+    "eoffice": {
+        "token": "",
+        "user": "thienhv",
+        "pass": "Abcd$$1234",
+        "url": "https://chat.cpc.vn/login",
+        "apiUrl": "https://api-chat.cpc.vn/api/external/tinnhan"
+    },
+    "alert": {
+        "fromDay": "2",
+        "toDay": "10",
+        "users": ["thienhv"],
+        "message": {
+            "header": "<p>Tổng số thiết bị sắp hến hạn từ {TNHH} đến {DNHH} ngày: <strong> {TSTBHH} </strong><br><strong>Gồm có:</strong><br>",
+            "content": "<br>Tên thiết bị: <strong>{TTB}</strong> - Đơn vị: <strong> {DV} </strong> - Mã hiệu SX: {MHSX} </strong> - Hãng SX: <strong> {HSX} </strong> - Tình trạng: <strong>{TTTB}</strong>",
+            "footer":"<br><strong>(Đây là tin nhắn tự động từ hệ thống thông báo các thiết bị gần hết hạn anh/chị vui lòng không phản hồi)</strong>"
+        }
     }
 }
