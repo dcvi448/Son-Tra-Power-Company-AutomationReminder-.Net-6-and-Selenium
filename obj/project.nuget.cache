@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "fBEESopQFEc+Dx0vg4+WN243JoQ2F6vCUIb9R+tJy2CUc5cxjNRhgEbphp2bOBHee0oA6O1leRWEInOzRcyYHw==",
+  "success": true,
+  "projectFilePath": "/Users/duc/Documents/src/src.csproj",
+  "expectedPackageFiles": [
+    "/Users/duc/.nuget/packages/gembox.spreadsheet/49.0.1244/gembox.spreadsheet.49.0.1244.nupkg.sha512",
+    "/Users/duc/.nuget/packages/harfbuzzsharp/2.8.2/harfbuzzsharp.2.8.2.nupkg.sha512",
+    "/Users/duc/.nuget/packages/harfbuzzsharp.nativeassets.macos/2.8.2/harfbuzzsharp.nativeassets.macos.2.8.2.nupkg.sha512",
+    "/Users/duc/.nuget/packages/harfbuzzsharp.nativeassets.win32/2.8.2/harfbuzzsharp.nativeassets.win32.2.8.2.nupkg.sha512",
+    "/Users/duc/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "/Users/duc/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/duc/.nuget/packages/portable.bouncycastle/1.8.9/portable.bouncycastle.1.8.9.nupkg.sha512",
+    "/Users/duc/.nuget/packages/selenium.support/4.8.0/selenium.support.4.8.0.nupkg.sha512",
+    "/Users/duc/.nuget/packages/selenium.webdriver/4.8.0/selenium.webdriver.4.8.0.nupkg.sha512",
+    "/Users/duc/.nuget/packages/skiasharp/2.80.3/skiasharp.2.80.3.nupkg.sha512",
+    "/Users/duc/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/Users/duc/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

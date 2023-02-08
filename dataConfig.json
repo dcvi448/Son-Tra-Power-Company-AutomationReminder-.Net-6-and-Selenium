@@ -1,0 +1,12 @@
+{
+    "idIndexCol": 2,
+    "deviceNameIndexCol": 3,
+    "unitNameIndexCol": 4,
+    "lastestUsedDateIndexCol": 5,
+    "customerNameIndexCol": 8,
+    "deviceProductionCodeIndexCol": 9,
+    "deviceManufacturerNameIndexCol": 10,
+    "deviceManufactureCountryIndexCol": 11,
+    "deviceYearOfIndexCol": 12,
+    "deviceStatusIndexCol": 15
+  }
