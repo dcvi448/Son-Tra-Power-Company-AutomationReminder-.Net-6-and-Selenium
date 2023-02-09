@@ -39,7 +39,44 @@ var unitElement = driver.FindElement(By.Id(config.unit.id));
 if (config.unit.includeAll == "yes")
     unitElement.Click();
 var statusElement = new SelectElement(driver.FindElement(By.Id(config.status.id)));
-statusElement.SelectByIndex(int.Parse(config.status.choose));
+statusElement.SelectByValue(config.status.choose);
+
+if (config.unitName.isUse == "yes")
+{
+    var unitNameElement = new SelectElement(driver.FindElement(By.Id(config.unitName.id)));
+    unitNameElement.SelectByValue(config.unitName.choose);
+}
+
+if (config.deviceType.isUse == "yes")
+{
+    var deviceTypeElement = new SelectElement(driver.FindElement(By.Id(config.deviceType.id)));
+    deviceTypeElement.SelectByValue(config.deviceType.choose);
+}
+
+if (config.deviceName.isUse == "yes")
+{
+    var deviceNameElement = new SelectElement(driver.FindElement(By.Id(config.deviceName.id)));
+    deviceNameElement.SelectByValue(config.deviceName.choose);
+}
+
+if (config.levelA.isUse == "yes")
+{
+    var levelAElement = new SelectElement(driver.FindElement(By.Id(config.levelA.id)));
+    levelAElement.SelectByValue(config.levelA.choose);
+}
+
+if (config.team.isUse == "yes")
+{
+    var teamElement = new SelectElement(driver.FindElement(By.Id(config.team.id)));
+    teamElement.SelectByValue(config.team.choose);
+}
+
+if (config.toDate.isUse == "yes")
+{
+    var toDateElement = new SelectElement(driver.FindElement(By.Id(config.toDate.id)));
+    toDateElement.SelectByValue(config.toDate.choose);
+}
+
 var getAllDevice = driver.FindElement(By.Id(config.getAllDevice.id));
 getAllDevice.Click();
 Console.WriteLine("Cho lay du lieu thiet bi");
@@ -125,14 +162,21 @@ if (Directory.Exists(downloadFolder))
             client.DefaultRequestHeaders.Add("api-version", "2");
             client.DefaultRequestHeaders.Add("Authorization", config.eoffice.token);
 
-            var header = config.alert.message.header.Replace("{TNHH}", config.alert.fromDay).Replace("{DNHH}", config.alert.toDay).Replace("{TSTBHH}", deviceListNeedInform.Count.ToString());
+            var header = config.alert.message.header.Replace("{fromDay}", config.alert.fromDay).Replace("{toDay}", config.alert.toDay)
+                                                    .Replace("{sumOfDevice}", deviceListNeedInform.Count.ToString());
+    
             var footer = config.alert.message.footer;
             var content = "";
             if (deviceListNeedInform.Count > 0)
             {
                 foreach (var item in deviceListNeedInform)
                 {
-                    content += config.alert.message.content.Replace("{TTB}", item.DeviceName).Replace("{DV}", item.UnitName).Replace("{MHSX}", item.DeviceProductionCode).Replace("{HSX}", item.DeviceManufacturerName).Replace("{TTTB}", item.DeviceStatus);
+                    content += config.alert.message.content.Replace("{deviceName}", item.DeviceName).Replace("{unitName}", item.UnitName)
+                                .Replace("{lastestUsedDate}", item.LastestUsedDate).Replace("{customerName}", item.CustomerName)
+                                .Replace("{deviceProductionCode}", item.DeviceProductionCode).Replace("{deviceManufacturerName}", item.DeviceManufacturerName)
+                                .Replace("{deviceManufactureCountry}", item.DeviceManufactureCountry).Replace("{deviceYearOf}", item.DeviceYearOf)
+                                .Replace("{deviceStatus}", item.DeviceStatus);
+                    ;
                 }
             }
 

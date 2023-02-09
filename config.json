@@ -1,11 +1,11 @@
 {
     "username": {
         "id": "Txtusername",
-        "user": "XXXXXX"
+        "user": "giangpt"
     },
     "password": {
         "id": "Txtpass",
-        "pass": "XXXXXX"
+        "pass": "@#Abcd1234"
     },
     "login": {
         "id": "Tcap"
@@ -24,6 +24,36 @@
         },
         "choose": "4"
     },
+    "unitName": {
+        "id": "ctl00_ContentPlaceHolder1_cmbCongTy",
+        "choose": "PC04EE",
+        "isUse": "no"
+    },
+    "deviceType": {
+        "id": "ctl00_ContentPlaceHolder1_drLoai",
+        "choose": "2",
+        "isUse": "no"
+    },
+    "deviceName": {
+        "id": "ctl00_ContentPlaceHolder1_drTB",
+        "choose": "44",
+        "isUse": "no"
+    },
+    "levelA": {
+        "id": "ctl00_ContentPlaceHolder1_drChonCDA",
+        "choose": ">110",
+        "isUse": "no"
+    },
+    "team": {
+        "id": "ctl00_ContentPlaceHolder1_drToChon",
+        "choose": "167",
+        "isUse": "no"
+    },
+    "toDate": {
+        "id": "ctl00_ContentPlaceHolder1_DngayCT_I",
+        "choose": "09/02/2023",
+        "isUse": "no"
+    },
     "getAllDevice": {
         "id": "ctl00_ContentPlaceHolder1_btnLayds"
     },
@@ -35,9 +65,6 @@
     },
     "eoffice": {
         "token": "",
-        "user": "thienhv",
-        "pass": "Abcd$$1234",
-        "url": "https://chat.cpc.vn/login",
         "apiUrl": "https://api-chat.cpc.vn/api/external/tinnhan"
     },
     "alert": {
@@ -45,8 +72,8 @@
         "toDay": "10",
         "users": ["thienhv"],
         "message": {
-            "header": "<p>Tổng số thiết bị sắp hến hạn từ {TNHH} đến {DNHH} ngày: <strong> {TSTBHH} </strong><br><strong>Gồm có:</strong><br>",
-            "content": "<br>Tên thiết bị: <strong>{TTB}</strong> - Đơn vị: <strong> {DV} </strong> - Mã hiệu SX: {MHSX} </strong> - Hãng SX: <strong> {HSX} </strong> - Tình trạng: <strong>{TTTB}</strong>",
+            "header": "<p>Tổng số thiết bị sắp hến hạn từ {fromDay} đến {toDay} ngày: <strong> {sumOfDevice} </strong><br><strong>Gồm có:</strong><br>",
+            "content": "<br>Tên thiết bị: <strong>{deviceName}</strong> - Đơn vị: <strong> {unitName} </strong> - Mã hiệu SX: {deviceProductionCode} </strong> - Hãng SX: <strong> {deviceManufacturerName} </strong> - Tình trạng: <strong>{deviceStatus}</strong>",
             "footer":"<br><strong>(Đây là tin nhắn tự động từ hệ thống thông báo các thiết bị gần hết hạn anh/chị vui lòng không phản hồi)</strong>"
         }
     }

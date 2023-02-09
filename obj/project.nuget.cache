@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VfpWR+E1YJ582DIIEHroeFE4SYLrB2MrrLYAdVWpJQ3PclIHby73a1y1p9WXsEqPcIK2PHRrBbWNf9mUzSyzpA==",
+  "dgSpecHash": "fBEESopQFEc+Dx0vg4+WN243JoQ2F6vCUIb9R+tJy2CUc5cxjNRhgEbphp2bOBHee0oA6O1leRWEInOzRcyYHw==",
   "success": true,
   "projectFilePath": "/Users/duc/Documents/src/src.csproj",
   "expectedPackageFiles": [
@@ -15,10 +15,7 @@
     "/Users/duc/.nuget/packages/selenium.webdriver/4.8.0/selenium.webdriver.4.8.0.nupkg.sha512",
     "/Users/duc/.nuget/packages/skiasharp/2.80.3/skiasharp.2.80.3.nupkg.sha512",
     "/Users/duc/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
-    "/Users/duc/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512",
-    "/Users/duc/.nuget/packages/microsoft.netcore.app.runtime.win-x64/6.0.13/microsoft.netcore.app.runtime.win-x64.6.0.13.nupkg.sha512",
-    "/Users/duc/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/6.0.13/microsoft.aspnetcore.app.runtime.win-x64.6.0.13.nupkg.sha512",
-    "/Users/duc/.nuget/packages/microsoft.netcore.app.host.win-x64/6.0.13/microsoft.netcore.app.host.win-x64.6.0.13.nupkg.sha512"
+    "/Users/duc/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
