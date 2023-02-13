@@ -1,4 +1,3 @@
-C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.csprojAssemblyReference.cache
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.Form1.resources
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.Properties.Resources.resources
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.csproj.GenerateResource.cache
@@ -11,12 +10,16 @@ C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debu
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\TuDongThongBao.pdb
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\ASquare.WindowsTaskScheduler.dll
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\BouncyCastle.Crypto.dll
-C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\GemBox.Spreadsheet.dll
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Newtonsoft.Json.dll
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\WebDriver.dll
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\WebDriver.Support.dll
-C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\GemBox.Spreadsheet.xml
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Newtonsoft.Json.xml
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.csproj.CopyComplete
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.exe
 C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.pdb
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Spire.License.dll
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Spire.Pdf.dll
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Spire.XLS.dll
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\bin\Debug\Microsoft.mshtml.dll
+C:\Source\banantoanautomationreminder\gui\TuDongThongBao\TuDongThongBao\obj\Debug\TuDongThongBao.csprojAssemblyReference.cache

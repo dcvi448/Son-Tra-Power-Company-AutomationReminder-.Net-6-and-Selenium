@@ -49,6 +49,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.EOfficeToken = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.CuoiTieuDe = new System.Windows.Forms.TextBox();
+            this.NoiDung = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TieuDe = new System.Windows.Forms.TextBox();
             this.DSNhan = new System.Windows.Forms.TextBox();
@@ -64,8 +66,6 @@
             this.NhatKy = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.NoiDung = new System.Windows.Forms.TextBox();
-            this.CuoiTieuDe = new System.Windows.Forms.TextBox();
             this.ChayAn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -286,6 +286,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông báo";
             // 
+            // CuoiTieuDe
+            // 
+            this.CuoiTieuDe.Location = new System.Drawing.Point(13, 363);
+            this.CuoiTieuDe.Multiline = true;
+            this.CuoiTieuDe.Name = "CuoiTieuDe";
+            this.CuoiTieuDe.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.CuoiTieuDe.Size = new System.Drawing.Size(590, 54);
+            this.CuoiTieuDe.TabIndex = 6;
+            // 
+            // NoiDung
+            // 
+            this.NoiDung.Location = new System.Drawing.Point(13, 252);
+            this.NoiDung.Multiline = true;
+            this.NoiDung.Name = "NoiDung";
+            this.NoiDung.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.NoiDung.Size = new System.Drawing.Size(590, 105);
+            this.NoiDung.TabIndex = 5;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -409,24 +427,6 @@
             // 
             this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
-            // NoiDung
-            // 
-            this.NoiDung.Location = new System.Drawing.Point(13, 252);
-            this.NoiDung.Multiline = true;
-            this.NoiDung.Name = "NoiDung";
-            this.NoiDung.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.NoiDung.Size = new System.Drawing.Size(590, 105);
-            this.NoiDung.TabIndex = 5;
-            // 
-            // CuoiTieuDe
-            // 
-            this.CuoiTieuDe.Location = new System.Drawing.Point(13, 363);
-            this.CuoiTieuDe.Multiline = true;
-            this.CuoiTieuDe.Name = "CuoiTieuDe";
-            this.CuoiTieuDe.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.CuoiTieuDe.Size = new System.Drawing.Size(590, 54);
-            this.CuoiTieuDe.TabIndex = 6;
-            // 
             // ChayAn
             // 
             this.ChayAn.Image = global::TuDongThongBao.Properties.Resources.icons8_play_button_circled_32;
@@ -455,7 +455,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Tự động gửi thông báo";
             this.Load += new System.EventHandler(this.Form1_LoadAsync);
             this.groupBox1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);

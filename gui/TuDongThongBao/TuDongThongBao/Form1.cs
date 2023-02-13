@@ -1,10 +1,10 @@
 ﻿using ASquare.WindowsTaskScheduler;
 using ASquare.WindowsTaskScheduler.Models;
-using GemBox.Spreadsheet;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,7 +109,7 @@ namespace TuDongThongBao
                 NhatKy.Text += "\r\nBắt đầu đọc tệp cấu hình";
                 var config = JsonConvert.DeserializeObject<Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/config.json"));
                 var dataConfig = JsonConvert.DeserializeObject<DataConfig.Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/dataConfig.json"));
-                SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+                
 
                 if (config == null || dataConfig == null)
                 {
@@ -201,23 +201,25 @@ namespace TuDongThongBao
                         NhatKy.Text += "\r\nLỗi! Tệp đã tải về không phải là tệp mới nhất trong hôm nay";
                         return;
                     }
-                    var workBook = ExcelFile.Load(lastestFile.FullName);
-                    var workSheet = workBook.Worksheets[0];
+                    Workbook workbook = new Workbook();
+                    workbook.LoadFromFile(lastestFile.FullName);
+                    Worksheet workSheet = workbook.Worksheets[0];
+
                     List<Device> deviceList = new List<Device>();
-                    for (int row = 1; row < workSheet.Rows.Count; row++)
+                    for (int row = 2; row <= workSheet.Rows.Count(); row++)
                     {
                         deviceList.Add(new Device()
                         {
-                            Id = workSheet.Cells[row, dataConfig.idIndexCol].Value?.ToString(),
-                            DeviceName = (workSheet.Cells[row, dataConfig.deviceNameIndexCol]).Value?.ToString(),
-                            UnitName = (workSheet.Cells[row, dataConfig.unitNameIndexCol]).Value?.ToString(),
-                            LastestUsedDate = (workSheet.Cells[row, dataConfig.lastestUsedDateIndexCol]).Value?.ToString(),
-                            CustomerName = workSheet.Cells[row, dataConfig.customerNameIndexCol].Value?.ToString(),
-                            DeviceManufacturerName = (workSheet.Cells[row, dataConfig.deviceManufacturerNameIndexCol]).Value?.ToString(),
-                            DeviceManufactureCountry = (workSheet.Cells[row, dataConfig.deviceManufactureCountryIndexCol]).Value?.ToString(),
-                            DeviceYearOf = (workSheet.Cells[row, dataConfig.deviceYearOfIndexCol]).Value?.ToString(),
-                            DeviceStatus = (workSheet.Cells[row, dataConfig.deviceStatusIndexCol]).Value?.ToString(),
-                            DeviceProductionCode = (workSheet.Cells[row, dataConfig.deviceProductionCodeIndexCol]).Value?.ToString(),
+                            Id = workSheet.Range[row, dataConfig.idIndexCol].Value.ToString(),
+                            DeviceName = workSheet.Range[row, dataConfig.deviceNameIndexCol].Value.ToString(),
+                            UnitName = workSheet.Range[row, dataConfig.unitNameIndexCol].Value.ToString(),
+                            LastestUsedDate = workSheet.Range[row, dataConfig.lastestUsedDateIndexCol].Value.ToString(),
+                            CustomerName = workSheet.Range[row, dataConfig.customerNameIndexCol].Value.ToString(),
+                            DeviceManufacturerName = workSheet.Range[row, dataConfig.deviceManufacturerNameIndexCol].Value.ToString(),
+                            DeviceManufactureCountry = workSheet.Range[row, dataConfig.deviceManufactureCountryIndexCol].Value.ToString(),
+                            DeviceYearOf = workSheet.Range[row, dataConfig.deviceYearOfIndexCol].Value.ToString(),
+                            DeviceStatus = workSheet.Range[row, dataConfig.deviceStatusIndexCol].Value.ToString(),
+                            DeviceProductionCode = workSheet.Range[row, dataConfig.deviceProductionCodeIndexCol].Value.ToString(),
                             RemainingDay = null
                         });
                     }
@@ -289,7 +291,7 @@ namespace TuDongThongBao
                             if (response.IsSuccessStatusCode)
                             {
                                 Uri ncrUrl = response.Headers.Location;
-                                NhatKy.Text += "Da gui thong tin toi Eoffice thanh cong";
+                                NhatKy.Text += "r\nĐã gửi thông tin tới EOffice thành công";
                             }
                         }
                     }
@@ -311,6 +313,7 @@ namespace TuDongThongBao
             {
                 NhatKy.Text += "\r\n Lỗi: " + ex.Message;
             }
+
         }
 
         private void ChonDonVi_CheckedChanged(object sender, EventArgs e)
@@ -344,15 +347,21 @@ namespace TuDongThongBao
             {
                 NhatKy.Text = "";
                 NhatKy.Text += "Bắt đầu thực hiện";
+                
+               
+                NhatKy.Text += "\r\nBắt đầu đọc tệp cấu hình";
+                var config = JsonConvert.DeserializeObject<Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/config.json"));
+                var dataConfig = JsonConvert.DeserializeObject<DataConfig.Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/dataConfig.json"));
+
                 var service = ChromeDriverService.CreateDefaultService();
                 service.HideCommandPromptWindow = true;
                 var options = new ChromeOptions();
                 options.AddArgument("headless");
+                options.AddUserProfilePreference("download.default_directory", config.download.folderDir);
+                options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
                 var driver = new ChromeDriver(service, options);
-                NhatKy.Text += "\r\nBắt đầu đọc tệp cấu hình";
-                var config = JsonConvert.DeserializeObject<Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/config.json"));
-                var dataConfig = JsonConvert.DeserializeObject<DataConfig.Root>(File.ReadAllText(Directory.GetCurrentDirectory() + "/dataConfig.json"));
-                SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+
+                //SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
 
                 if (config == null || dataConfig == null)
                 {
@@ -444,23 +453,26 @@ namespace TuDongThongBao
                         NhatKy.Text += "\r\nLỗi! Tệp đã tải về không phải là tệp mới nhất trong hôm nay";
                         return;
                     }
-                    var workBook = ExcelFile.Load(lastestFile.FullName);
-                    var workSheet = workBook.Worksheets[0];
+
+                    Workbook workbook = new Workbook();
+                    workbook.LoadFromFile(lastestFile.FullName);
+                    Worksheet workSheet = workbook.Worksheets[0];
+
                     List<Device> deviceList = new List<Device>();
-                    for (int row = 1; row < workSheet.Rows.Count; row++)
+                    for (int row = 2; row <= workSheet.Rows.Count(); row++)
                     {
                         deviceList.Add(new Device()
                         {
-                            Id = workSheet.Cells[row, dataConfig.idIndexCol].Value?.ToString(),
-                            DeviceName = (workSheet.Cells[row, dataConfig.deviceNameIndexCol]).Value?.ToString(),
-                            UnitName = (workSheet.Cells[row, dataConfig.unitNameIndexCol]).Value?.ToString(),
-                            LastestUsedDate = (workSheet.Cells[row, dataConfig.lastestUsedDateIndexCol]).Value?.ToString(),
-                            CustomerName = workSheet.Cells[row, dataConfig.customerNameIndexCol].Value?.ToString(),
-                            DeviceManufacturerName = (workSheet.Cells[row, dataConfig.deviceManufacturerNameIndexCol]).Value?.ToString(),
-                            DeviceManufactureCountry = (workSheet.Cells[row, dataConfig.deviceManufactureCountryIndexCol]).Value?.ToString(),
-                            DeviceYearOf = (workSheet.Cells[row, dataConfig.deviceYearOfIndexCol]).Value?.ToString(),
-                            DeviceStatus = (workSheet.Cells[row, dataConfig.deviceStatusIndexCol]).Value?.ToString(),
-                            DeviceProductionCode = (workSheet.Cells[row, dataConfig.deviceProductionCodeIndexCol]).Value?.ToString(),
+                            Id = workSheet.Range[row,dataConfig.idIndexCol].Value.ToString(),
+                            DeviceName = workSheet.Range[row,dataConfig.deviceNameIndexCol].Value.ToString(),
+                            UnitName = workSheet.Range[row,dataConfig.unitNameIndexCol].Value.ToString(),
+                            LastestUsedDate = workSheet.Range[row,dataConfig.lastestUsedDateIndexCol].Value.ToString(),
+                            CustomerName = workSheet.Range[row,dataConfig.customerNameIndexCol].Value.ToString(),
+                            DeviceManufacturerName = workSheet.Range[row,dataConfig.deviceManufacturerNameIndexCol].Value.ToString(),
+                            DeviceManufactureCountry = workSheet.Range[row,dataConfig.deviceManufactureCountryIndexCol].Value.ToString(),
+                            DeviceYearOf = workSheet.Range[row,dataConfig.deviceYearOfIndexCol].Value.ToString(),
+                            DeviceStatus = workSheet.Range[row,dataConfig.deviceStatusIndexCol].Value.ToString(),
+                            DeviceProductionCode = workSheet.Range[row,dataConfig.deviceProductionCodeIndexCol].Value.ToString(),
                             RemainingDay = null
                         });
                     }
@@ -532,7 +544,7 @@ namespace TuDongThongBao
                             if (response.IsSuccessStatusCode)
                             {
                                 Uri ncrUrl = response.Headers.Location;
-                                NhatKy.Text += "Da gui thong tin toi Eoffice thanh cong";
+                                NhatKy.Text += "\r\nĐã gửi tới EOffice thành công";
                             }
                         }
                     }

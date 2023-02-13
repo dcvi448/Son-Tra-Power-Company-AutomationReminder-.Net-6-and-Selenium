@@ -1,12 +1,12 @@
 {
-    "idIndexCol": 1,
-    "deviceNameIndexCol": 2,
-    "unitNameIndexCol": 3,
-    "lastestUsedDateIndexCol": 4,
-    "customerNameIndexCol": 7,
-    "deviceProductionCodeIndexCol": 8,
-    "deviceManufacturerNameIndexCol": 9,
-    "deviceManufactureCountryIndexCol": 10,
-    "deviceYearOfIndexCol": 11,
-    "deviceStatusIndexCol": 14
+    "idIndexCol": 2,
+    "deviceNameIndexCol": 3,
+    "unitNameIndexCol": 4,
+    "lastestUsedDateIndexCol": 5,
+    "customerNameIndexCol": 8,
+    "deviceProductionCodeIndexCol": 9,
+    "deviceManufacturerNameIndexCol": 10,
+    "deviceManufactureCountryIndexCol": 11,
+    "deviceYearOfIndexCol": 12,
+    "deviceStatusIndexCol": 15
   }
