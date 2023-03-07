@@ -1,3 +1,5 @@
+The system supports notification of expired and nearly expired equipment and sends notifications to the E-Office system for Son Tra Power, Da Nang City (.NET 6 + Selenium)
+---
 A. Cấu hình bắt buộc
 
 1. Thư mục tải xuống dữ liệu:
