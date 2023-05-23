@@ -1,0 +1,82 @@
+{
+  "username": {
+    "id": "Txtusername",
+    "user": "giangpt"
+  },
+  "password": {
+    "id": "Txtpass",
+    "pass": "@#Abcd1234"
+  },
+  "login": {
+    "id": "Tcap"
+  },
+  "unit": {
+    "includeAll": "yes",
+    "id": "ctl00_ContentPlaceHolder1_cbdvtt"
+  },
+  "status": {
+    "id": "ctl00_ContentPlaceHolder1_drCTT",
+    "value": {
+      "amostExpire": "4",
+      "expire": "2",
+      "damage": "-1",
+      "notYetVerify": "3"
+    },
+    "choose": "4"
+  },
+  "unitName": {
+    "id": "ctl00_ContentPlaceHolder1_cmbCongTy",
+    "choose": "PC04EE",
+    "isUse": "no"
+  },
+  "deviceType": {
+    "id": "ctl00_ContentPlaceHolder1_drLoai",
+    "choose": "2",
+    "isUse": "no"
+  },
+  "deviceName": {
+    "id": "ctl00_ContentPlaceHolder1_drTB",
+    "choose": "44",
+    "isUse": "no"
+  },
+  "levelA": {
+    "id": "ctl00_ContentPlaceHolder1_drChonCDA",
+    "choose": ">110",
+    "isUse": "no"
+  },
+  "team": {
+    "id": "ctl00_ContentPlaceHolder1_drToChon",
+    "choose": "167",
+    "isUse": "no"
+  },
+  "toDate": {
+    "id": "ctl00_ContentPlaceHolder1_DngayCT_I",
+    "choose": "09/02/2023",
+    "isUse": "no"
+  },
+  "getAllDevice": {
+    "id": "ctl00_ContentPlaceHolder1_btnLayds"
+  },
+  "exportXLSX": {
+    "id": "grdDsPhieuCT_DXCTMenu0_DXI1_T"
+  },
+  "download": {
+    "folderDir": "C:\\Users\\duc.nguyenthanh\\Downloads"
+  },
+  "eoffice": {
+    "token": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjIxQUZCM0U1OEFDQ0Y1ODlFQjNBOTZDNzYzNUNCNEE5NzM5OEFBMTUiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJJYS16NVlyTTlZbnJPcGJIWTF5MHFYT1lxaFUifQ.eyJuYmYiOjE2NzU4NzI4NjgsImV4cCI6MTY3ODQ2NDk4OCwiaXNzIjoiaHR0cDovL2F1dGhlb2ZmaWNlLmNwYy52biIsImF1ZCI6WyJodHRwOi8vYXV0aGVvZmZpY2UuY3BjLnZuL3Jlc291cmNlcyIsImVvZmZpY2UiXSwiY2xpZW50X2lkIjoiZW9mZmljZS5yby5jbGllbnQiLCJzdWIiOiJ0aGllbmh2IiwiYXV0aF90aW1lIjoxNjc1ODcyOTg4LCJpZHAiOiJsb2NhbCIsInByZWZlcnJlZF91c2VybmFtZSI6InRoaWVuaHYiLCJpZCI6IjAwNDRiOTJmLTlmOGMtZTcxMS04MGNkLTQwMTY3ZTdiOWM2YSIsImVtYWlsIjoidGhpZW5odkBjcGMudm4iLCJuYW1lIjoidGhpZW5odiIsInNjb3BlIjpbImVvZmZpY2UiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicGFzc3dvcmQiXX0.MSmml3hzqKekQ1Yb80y1RkvHUnHqrtGEVPnBoOZ79Tsr222u3qJN1jnOoaH8JBDcadUe7kKjWXZ0h6-XP26ry4hZQxXuGB_BV9aLjWBlNmln-G-7zqemIg0oGXodwO18CL_ZlN2ny09kKJTploOu4CTkTHYB40t5aARSBnXmbk9-WlqOR56S4QivWDFZWsALYi4Iq8AE8VaFeAXeRRQotbWZa9GKzSNbu6Th2uWlQwWiaiyBWnoj-oxCSMznDA3Xpv0fxwNyNBPlErX_0KsPM3dswtrJohthPZU5UhpvgiL35NnaHuaIqRy7MOxPpNqsmpIkQdEysuedCCP257cSeQ",
+    "apiUrl": "https://api-chat.cpc.vn/api/external/tinnhan"
+  },
+  "alert": {
+    "fromDay": "2",
+    "toDay": "10",
+    "users": [
+      "thienhv"
+    ],
+    "message": {
+      "header": "<p>Tổng số thiết bị sắp hến hạn từ {fromDay} đến {toDay} ngày: <strong> {sumOfDevice} </strong><br><strong>Gồm có:</strong><br>",
+      "content": "<br>Tên thiết bị: <strong>{deviceName}</strong> - Đơn vị: <strong> {unitName} </strong> - Mã hiệu SX: {deviceProductionCode} </strong> - Hãng SX: <strong> {deviceManufacturerName} </strong> - Tình trạng: <strong>{deviceStatus}</strong>",
+      "footer": "<br><strong>(Đây là tin nhắn tự động từ hệ thống thông báo các thiết bị gần hết hạn anh/chị vui lòng không phản hồi)</strong>"
+    }
+  }
+}
